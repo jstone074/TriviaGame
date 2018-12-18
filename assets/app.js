@@ -50,6 +50,12 @@ function cycleQuestion (){
 }
 
 function displayQuestions(){
+    $("#button1").show();
+    $("#button2").show();
+    $("#button3").show();
+    $("#button4").show();
+    $("question").show();
+    $("#question").text(qArray[qArraryIndex].question);
     $("#button1").text(qArray[qArraryIndex].options[0]);
     $("#button2").text(qArray[qArraryIndex].options[1]);
     $("#button3").text(qArray[qArraryIndex].options[2]);
@@ -57,6 +63,7 @@ function displayQuestions(){
 }
 
 function hideQuestionButtons(){
+    $("question").hide();
     $("#button1").hide();
     $("#button2").hide();
     $("#button3").hide();
@@ -70,6 +77,8 @@ var timerObject =
     reset: function(){
         //reset timer back to initial time
         timerObject.initalTime = 10;
+        $("#timerRow").text("00:10");
+
 
         //Update display to timer
         $("#timerRow").text(timerObject.initalTime);
@@ -106,12 +115,52 @@ var timerObject =
 }
 
 
-displayQuestions();
+
 
 $(document).ready(function(){
 
     hideQuestionButtons();
-    timerObject.start();
+    $("#timerRow").hide();
+    // timerObject.start();
+
+    $("#startGame").on("click",function(){
+
+        displayQuestions();
+        $("#startGame").hide();
+        $("#timerRow").show();
+        timerObject.reset();
+        timerObject.start();
+
+
+
+    });
+
+    $(".btn").on("click", function(){
+
+        if(qArraryIndex < qArray.length ){
+
+            var answerValue = $(this).attr("data-value");
+            console.log(answerValue);
+            console.log("Question Answer " + qArray[qArraryIndex].rightAnswer);
+
+            if(answerValue === qArray[qArraryIndex].rightAnswer){
+                console.log("Correct Answer");
+                timerObject.reset()
+                timerObject.start();
+                
+            }else {
+
+            }
+
+            setTimeout(cycleQuestion,3000);
+
+
+        }
+
+
+
+
+    })
 
 
 
