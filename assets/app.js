@@ -46,6 +46,16 @@ var qArraryIndex =0;
 function cycleQuestion (){
     qArraryIndex++;
 
+    if(qArraryIndex < qArray.length ){
+        displayQuestions();
+        timerObject.reset();
+        timerObject.start();
+    }else {
+        hideQuestionButtons();
+
+
+    }
+
 
 }
 
@@ -54,7 +64,7 @@ function displayQuestions(){
     $("#button2").show();
     $("#button3").show();
     $("#button4").show();
-    $("question").show();
+    $("#question").show();
     $("#question").text(qArray[qArraryIndex].question);
     $("#button1").text(qArray[qArraryIndex].options[0]);
     $("#button2").text(qArray[qArraryIndex].options[1]);
@@ -63,7 +73,7 @@ function displayQuestions(){
 }
 
 function hideQuestionButtons(){
-    $("question").hide();
+    $("#question").hide();
     $("#button1").hide();
     $("#button2").hide();
     $("#button3").hide();
