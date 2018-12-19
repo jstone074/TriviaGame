@@ -48,7 +48,8 @@ function cycleQuestion (){
 
     if(qArraryIndex < qArray.length ){
         displayQuestions();
-
+        $("#timerRow").show();
+        
         timerObject.stop();
         timerObject.reset();
         timerObject.start();
@@ -94,7 +95,7 @@ var timerObject =
 
 
         //Update display to timer
-        $("#timerRow").text(timerObject.initalTime);
+        // $("#timerRow").text(timerObject.initalTime);
     },
 
     start: function(){
@@ -118,6 +119,10 @@ var timerObject =
         if (timerObject.initalTime === 0){
             console.log("Times Up");
             console.log("The Correct Answer is " + qArray[qArraryIndex].rightAnswer);
+            hideQuestionButtons();
+            $("#timerRow").hide();
+
+           
             setTimeout(cycleQuestion,3000);
         }
     },
