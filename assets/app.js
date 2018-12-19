@@ -159,8 +159,8 @@ $(document).ready(function(){
 
     });
 
-   $("data-value").attr("onclick", function(){
-    // $("data-value").on("click", function(){
+//    $("data-value").attr("onclick", function(){
+    $(".answer").on("click", function(){
 
         if(qArraryIndex < qArray.length ){
 
