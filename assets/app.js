@@ -48,8 +48,11 @@ function cycleQuestion (){
 
     if(qArraryIndex < qArray.length ){
         displayQuestions();
+
+        timerObject.stop();
         timerObject.reset();
         timerObject.start();
+
     }else {
         hideQuestionButtons();
 
@@ -96,16 +99,27 @@ var timerObject =
 
     start: function(){
         //starting timer
-        setInterval(timerObject.countDown,1000);
+        startTimer = setInterval(timerObject.countDown,1000);
 
 
     },
 
+    stop: function(){
+        clearInterval(startTimer);
+    },
+
     countDown: function(){
+
         timerObject.initalTime--;
         var convertedTime = timerObject.timeConverter(timerObject.initalTime);
         $("#timerRow").text(convertedTime);
         console.log(convertedTime);
+
+        if (timerObject.initalTime === 0){
+            console.log("Times Up");
+            console.log("The Correct Answer is " + qArray[qArraryIndex].rightAnswer);
+            setTimeout(cycleQuestion,3000);
+        }
     },
 
     timeConverter: function(t)
@@ -145,20 +159,31 @@ $(document).ready(function(){
 
     });
 
-    $(".btn").on("click", function(){
+   $("data-value").attr("onclick", function(){
+    // $("data-value").on("click", function(){
 
         if(qArraryIndex < qArray.length ){
 
-            var answerValue = $(this).attr("data-value");
+            var answerValue = parseInt($(this).attr("data-value"));
             console.log(answerValue);
+            // console.log(answerValue);
             console.log("Question Answer " + qArray[qArraryIndex].rightAnswer);
+            
 
             if(answerValue === qArray[qArraryIndex].rightAnswer){
-                console.log("Correct Answer");
-                timerObject.reset()
-                timerObject.start();
+                console.log("You guessed "+ answerValue);
+                console.log("Correct Answer is "+ qArray[qArraryIndex].rightAnswer);
                 
+                timerObject.stop();
+                timerObject.reset();
+
             }else {
+
+                console.log("You guessed the wrong answer")
+                console.log("Correct Answer is "+qArray[qArraryIndex].rightAnswer);
+                
+                timerObject.stop();
+                timerObject.reset();
 
             }
 
