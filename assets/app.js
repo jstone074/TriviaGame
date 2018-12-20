@@ -1,28 +1,32 @@
 var q1 = {
-    question:"Choose one",
-    answer: "1",
-    options: ["1","2","3","4"],
+    question:"What is the first Pokemon in the Pokedex",
+    answer: "Bulbasaur is the first Pokemon listed in the Pokedex",
+    options: ["Bulbasaur","Charmander","Squirtle","Pikachu"],
+    gif: "assets/images/bulbasaur.gif",
     rightAnswer: 1
 };
 
 var q2 = {
-    question:"Choose Two",
-    answer: "2",
-    options: ["1","2","3","4"],
+    question:"In Episode one, what is the Pokemon that Ash spots in the sky",
+    answer: "Ho-Oh appeared at the end of the episode however it was not known until later what it was",
+    options: ["Charizard","Ho-Oh","Zapdos","Pidgeot"],
+    gif: "assets/images/hooh.gif",
     rightAnswer:2
 };
 
 var q3 = {
-    question:"Choose Three",
-    answer: "3",
-    options: ["1","2","3","4"],
+    question:"How does a Pikachu evolve?",
+    answer: "Pikachu evolves into Raichu with a Thunder Stone",
+    options: ["Level 18","Whenever it wants","With a Thunder Stone","There isn't an evolution"],
+    gif: "assets/images/pikachu.gif",
     rightAnswer:3
 };
 
 var q4 = {
-    question:"Choose Four",
-    answer: "4",
-    options: ["1","2","3","4"],
+    question: "What is the name of the first Pokemon ever created",
+    answer: "Rhydon was the first Pokemon created",
+    options: ["Bulbasaur","Squirtle","Pikachu","Rhydon"],
+    gif: "assets/images/rhydon.gif",
     rightAnswer:4
 };
 
@@ -42,13 +46,23 @@ var q4 = {
 
 var qArray = [q1,q2,q3,q4];
 var qArraryIndex =0;
+var correctAnswer = 0;
+var wrongAnswer = 0;
+
+
 
 function cycleQuestion (){
     qArraryIndex++;
 
     if(qArraryIndex < qArray.length ){
         displayQuestions();
+        $("#wrongAnswerGif").hide();
+        $("#correctAnswerdisplay").hide();
+        $("#correctdisplay").hide();
+        $("#correctAnswerGif").hide();
+        $("#correctAnswerGif").attr("src", "");
         $("#timerRow").show();
+        
         
         timerObject.stop();
         timerObject.reset();
@@ -56,11 +70,28 @@ function cycleQuestion (){
 
     }else {
         hideQuestionButtons();
+        $("#wrongAnswerGif").hide();
+        $("#correctAnswerGif").hide();
+        $("#correctAnswerdisplay").hide();
+        $("#correctAnswerGif").attr("src", "");    
+        $("#resetGame").show();
+        $("#results").show();
+        $("#results").text("You guessed " + correctAnswer + " correctly! Press Start Over to play again!");
+
+
+        $("#resetGame").on("click",function(){
+            $("#results").hide();
+            $("#resetGame").hide();
+            resetGame();
+            displayQuestions();
+            $("#timerRow").show();
+            timerObject.stop();
+            timerObject.reset();
+            timerObject.start();
+        })
 
 
     }
-
-
 }
 
 function displayQuestions(){
@@ -82,16 +113,30 @@ function hideQuestionButtons(){
     $("#button2").hide();
     $("#button3").hide();
     $("#button4").hide();
+    $("#resetGame").hide();
+    $("#wrongAnswerGif").hide();
+    $("#correctAnswerdisplay").hide();
+    $("#correctdisplay").hide();
+    $("#correctAnswerGif").hide();
+}
+
+
+function resetGame (){
+
+    correctAnswer = 0;
+    wrongAnswer = 0;
+    qArraryIndex = 0;
+
 }
 
 var timerObject = 
 {
-    initalTime:10,
+    initalTime:20,
 
     reset: function(){
         //reset timer back to initial time
-        timerObject.initalTime = 10;
-        $("#timerRow").text("00:10");
+        timerObject.initalTime = 20;
+        $("#timerRow").text("00:20");
 
 
         //Update display to timer
@@ -117,10 +162,17 @@ var timerObject =
         console.log(convertedTime);
 
         if (timerObject.initalTime === 0){
+
+            wrongAnswer++;
+            console.log(wrongAnswer);
             console.log("Times Up");
-            console.log("The Correct Answer is " + qArray[qArraryIndex].rightAnswer);
+            console.log(qArray[qArraryIndex].answer);
             hideQuestionButtons();
             $("#timerRow").hide();
+            $("#correctAnswerdisplay").show();
+            $("#wrongAnswerGif").show();
+            $("#correctAnswerdisplay").text(qArray[qArraryIndex].answer);
+            
 
            
             setTimeout(cycleQuestion,3000);
@@ -142,9 +194,6 @@ var timerObject =
     }
 
 }
-
-
-
 
 $(document).ready(function(){
 
@@ -176,26 +225,45 @@ $(document).ready(function(){
             
 
             if(answerValue === qArray[qArraryIndex].rightAnswer){
+                
+                correctAnswer++;
+                console.log(correctAnswer);
+                hideQuestionButtons();
+                $("#timerRow").hide();
                 console.log("You guessed "+ answerValue);
                 console.log("Correct Answer is "+ qArray[qArraryIndex].rightAnswer);
-                
+                $("#correctdisplay").show();
+                $("#correctAnswerGif").show();
+                $("#correctdisplay").text("Thats Correct! " + qArray[qArraryIndex].answer);
+                $("#correctAnswerGif").attr("src", qArray[qArraryIndex].gif);
+                console.log(qArray[qArraryIndex].gif);
+
                 timerObject.stop();
                 timerObject.reset();
 
             }else {
 
+                wrongAnswer++;
+                console.log(wrongAnswer);
+                hideQuestionButtons();
+                $("#timerRow").hide();
+                $("#correctAnswerdisplay").show();
+                $("#wrongAnswerGif").show();
+                $("#correctAnswerdisplay").text(qArray[qArraryIndex].answer);
                 console.log("You guessed the wrong answer")
-                console.log("Correct Answer is "+qArray[qArraryIndex].rightAnswer);
+                console.log(qArray[qArraryIndex].rightAnswer);
                 
                 timerObject.stop();
                 timerObject.reset();
 
             }
 
-            setTimeout(cycleQuestion,3000);
+            setTimeout(cycleQuestion,4000);
 
 
         }
+
+        timerObject.stop();
 
 
 
