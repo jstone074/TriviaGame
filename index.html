@@ -14,22 +14,29 @@
 </head>
 
 <body>
-    <div class="jumbotron text-center">
-        <h1>Triva</h1>
-    </div>
-
-    <div class="container">
-
-        <!-- Row for starting game -->
-        <div class="row">
-            <div class="col-lg-12 text-center ">
-                <div id="startGame" class="bg-primary text-light btn btn-lg font-weight-bold">START GAME</div>
-            </div>
-        </div>
-
-        <!-- Row for Timmer -->
+    <div class="jumbotron text-center text-secondary m-4">
+        <!-- <h1>Pokemon Triva</h1> -->
         <div class="row">
             <div class="col-lg-12 text-center">
+                <div id="startGame" class="bg-primary text-light btn btn-lg font-weight-bold">Pokemon Triva</div>
+            </div>
+        </div>
+    
+    </div>
+
+        <!-- Row for starting game
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div id="startGame" class="bg-primary text-light btn btn-lg font-weight-bold">START GAME</div>
+            </div>
+        </div> -->
+
+    <div class="container text-center p-2" id="main-content">
+
+
+        <!-- Row for Timmer -->
+        <div class="row justify-content-center">
+            <div class="col-lg-2 text-center">
                 <h2 id="timerRow" class="text-light">00:20</h2>
             </div>
         </div>
@@ -37,7 +44,7 @@
         <!-- Row for Reset Button -->
         <div class="row">
             <div class="col-lg-12 text-center">
-                <div id="resetGame" class="text-light btn btn-lg font-weight-bold">Start Over</div>
+                <div id="resetGame" class="text-light bg-primary btn btn-lg font-weight-bold">Start Over</div>
             </div>
         </div>
 
@@ -51,26 +58,29 @@
         <!-- Rows for Questions and Answers -->
         <div class="row">
             <div class="col-lg-12 text-center">
-                <h2 data-value="" id="question" class="bg-secondary text-light font-weight-bold"></h2>
+                <h2 data-value="" id="question" class="text-light font-weight-bold"></h2>
             </div>
-            <div class="col-lg-12 text-center">
-                <div data-value="1" id="button1" class="text-light btn answer btn-primary mb-2 mt-2"></div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-3">
+                <div data-value="1" id="button1" class="text-light btn answer btn-primary"></div>
             </div>
-            <div class="col-lg-12 text-center">
-                <div data-value="2" id="button2" class="text-light btn answer btn-primary mb-2"></div>
+            <div class="col-md-3">
+                <div data-value="2" id="button2" class="text-light btn answer btn-primary"></div>
             </div>
-            <div class="col-lg-12 text-center">
-                <div data-value="3" id="button3" class="text-light btn answer btn-primary mb-2"></div>
+            <div class="col-md-3">
+                <div data-value="3" id="button3" class="text-light btn answer btn-primary"></div>
             </div>
-            <div class="col-lg-12 text-center">
+            <div class="col-md-3">
                 <div data-value="4" id="button4" class="text-light btn answer btn-primary"></div>
             </div>
         </div>
+        
 
         <!-- Row for Correct answers -->
         <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h2 id="correctdisplay" class="bg-secondary text-light mb-2"></h2>
+                    <h2 id="correctdisplay" class="text-light"></h2>
                     <img class = "text-light mt-2" id="correctAnswerGif" src="" alt="correct gif">
                 </div>
             </div>
@@ -78,9 +88,10 @@
         <!-- Row for wrong answers -->
         <div class="row">
             <div class="col-lg-12 text-center">
-                <h2 id="correctAnswerdisplay" class="bg-secondary text-light"></h2>
+                <h2 id="correctAnswerdisplay" class="text-light"></h2>
                 <img id="wrongAnswerGif" src="assets/images/wrong.gif" alt="wrong gif">
             </div>
+        </div>
         </div>
 
      </div>

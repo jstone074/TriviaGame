@@ -1,5 +1,5 @@
 var q1 = {
-    question:"What is the first Pokemon in the Pokedex",
+    question:"What is the first Pokemon in the Pokedex?",
     answer: "Bulbasaur is the first Pokemon listed in the Pokedex",
     options: ["Bulbasaur","Charmander","Squirtle","Pikachu"],
     gif: "assets/images/bulbasaur.gif",
@@ -7,7 +7,7 @@ var q1 = {
 };
 
 var q2 = {
-    question:"In Episode one, what is the Pokemon that Ash spots in the sky",
+    question:"In Episode one, what is the Pokemon that Ash spots in the sky?",
     answer: "Ho-Oh appeared at the end of the episode however it was not known until later what it was",
     options: ["Charizard","Ho-Oh","Zapdos","Pidgeot"],
     gif: "assets/images/hooh.gif",
@@ -23,28 +23,46 @@ var q3 = {
 };
 
 var q4 = {
-    question: "What is the name of the first Pokemon ever created",
+    question: "What is the name of the first Pokemon ever created?",
     answer: "Rhydon was the first Pokemon created",
     options: ["Bulbasaur","Squirtle","Pikachu","Rhydon"],
     gif: "assets/images/rhydon.gif",
     rightAnswer:4
 };
 
-// var q5 = {
-//     question:"",
-//     answer: "",
-//     options: [""],
-//     rightAnswer:1
-// };
+var q5 = {
+    question: "This Pokemon was almost the face of the franchise",
+    answer: "Clefairy, and not Pikachu, was originally planned to be Ash's side kick",
+    options: ["Clefairy","Squirtle","Pikachu","Bulbasaur"],
+    gif: "assets/images/clefairy.gif",
+    rightAnswer:1
+};
 
-// var q6 = {
-//     question:"",
-//     answer: "",
-//     options: [""],
-//     rightAnswer:1
-// };
+var q6 = {
+    question: "Which game has the main character's father present?",
+    answer: "Ruby/Sapphire is the only game where you see the main characters father",
+    options: ["Red/Blue","Silver/Gold","Ruby/Sapphire","Diamond/Pearl"],
+    gif: "assets/images/sapphire.gif",
+    rightAnswer:3
+};
 
-var qArray = [q1,q2,q3,q4];
+var q7 = {
+    question: "How many Eevee evolutions are there?",
+    answer: "There are a total of 8 eevee evolutions",
+    options: ["3","5","8","12"],
+    gif: "assets/images/eevee.gif",
+    rightAnswer:3
+};
+
+var q8 = {
+    question: "What animla is Drowzee based off",
+    answer: "Drowzee is based off of a tapir",
+    options: ["Mouse","Tapir","Panda","Goat"],
+    gif: "assets/images/drowzee.gif",
+    rightAnswer:2
+};
+
+var qArray = [q1,q2,q3,q4,q5,q6,q7,q8];
 var qArraryIndex =0;
 var correctAnswer = 0;
 var wrongAnswer = 0;
@@ -70,11 +88,13 @@ function cycleQuestion (){
 
     }else {
         hideQuestionButtons();
+        $("#main-content").show();
         $("#wrongAnswerGif").hide();
         $("#correctAnswerGif").hide();
         $("#correctAnswerdisplay").hide();
         $("#correctAnswerGif").attr("src", "");    
         $("#resetGame").show();
+        $("#main-content").show();
         $("#results").show();
         $("#results").text("You guessed " + correctAnswer + " correctly! Press Start Over to play again!");
 
@@ -96,6 +116,7 @@ function cycleQuestion (){
 
 function displayQuestions(){
     $("#button1").show();
+    $("#main-content").show();
     $("#button2").show();
     $("#button3").show();
     $("#button4").show();
@@ -109,6 +130,7 @@ function displayQuestions(){
 
 function hideQuestionButtons(){
     $("#question").hide();
+    $("#main-content").hide();
     $("#button1").hide();
     $("#button2").hide();
     $("#button3").hide();
@@ -168,6 +190,7 @@ var timerObject =
             console.log("Times Up");
             console.log(qArray[qArraryIndex].answer);
             hideQuestionButtons();
+            $("#main-content").show();
             $("#timerRow").hide();
             $("#correctAnswerdisplay").show();
             $("#wrongAnswerGif").show();
@@ -229,6 +252,7 @@ $(document).ready(function(){
                 correctAnswer++;
                 console.log(correctAnswer);
                 hideQuestionButtons();
+                $("#main-content").show();
                 $("#timerRow").hide();
                 console.log("You guessed "+ answerValue);
                 console.log("Correct Answer is "+ qArray[qArraryIndex].rightAnswer);
@@ -247,6 +271,7 @@ $(document).ready(function(){
                 console.log(wrongAnswer);
                 hideQuestionButtons();
                 $("#timerRow").hide();
+                $("#main-content").show();
                 $("#correctAnswerdisplay").show();
                 $("#wrongAnswerGif").show();
                 $("#correctAnswerdisplay").text(qArray[qArraryIndex].answer);

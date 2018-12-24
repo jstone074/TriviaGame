@@ -1,10 +1,3 @@
-/* body {
-    background-image: url("../assets/images/background.JPG");
-    background-size: cover;
-    background-repeat: no-repeat;
-} */
-
-
 body { 
     background: url(../assets/images/background.JPG) no-repeat center center fixed; 
     -webkit-background-size: cover;
@@ -12,3 +5,15 @@ body {
     -o-background-size: cover;
     background-size: cover;
   }
+
+#main-content{
+    background-color:rgba(94, 158, 160, 0.719);
+    opacity: 0.99;
+}
+
+.jumbotron {
+    background-image: url(../assets/images/pokeball.jpg);
+    background-size: cover;
+    background-repeat: no-repeat; 
+    
+}
